@@ -8,8 +8,10 @@ cask "qt-design-studio" do
   homepage "https://www.qt.io/product/ui-design-tools"
 
   livecheck do
-    url "https://wiki.qt.io/QtDesignStudio"
-    regex(%r{href=["']/QtDesignStudio[._-]changelog?v?(\d+(?:\.\d+)+)/?["' >]}i)
+    url "https://git.qt.io/api/v4/projects/4586/packages/"
+    strategy :json do |json|
+      json.map { |item| item["version"] }
+    end
   end
 
   depends_on macos: ">= :monterey"
